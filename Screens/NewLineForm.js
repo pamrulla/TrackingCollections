@@ -6,19 +6,16 @@ import Header from './../Components/Util/Header';
 class NewLineForm extends Component {
     constructor(props) {
         super(props);
-        this.setDate = this.setDate.bind(this);
         this.colors = this.props.theme.colors;
         this.cities = ['Kakinada', 'Anaparthi', 'Rajahmundry'];
+        this.partnersRows = [];
         this.state = { 
             visible: false,
             cityIndex: 0,
-            date: new Date()
+            date: new Date(),
+            partners: [],
         };
-    }
-
-    setDate(newDate) 
-    {
-        this.setState({ date: newDate });
+        this.addPartner(this.state.partners.length + 1);
     }
 
     _openMenu = () => this.setState({ visible: true });
@@ -31,10 +28,28 @@ class NewLineForm extends Component {
             const {action, year, month, day} = await DatePickerAndroid.open({options});
             if (action !== DatePickerAndroid.dismissedAction) {
                 this.setState({date: new Date(year, month, day)})
-                console.log(this)
             }
         } catch ({code, message}) {
             console.warn('Cannot open date picker', message);
+        }
+    }
+
+    addPartner(numberOfPartners)
+    {
+        let i = numberOfPartners;
+        this.state.partners.push(
+        <View key={i} style={styles.row}>
+            <View key={i} style={styles.fieldNameContainer}>
+                <Text key={i} style={styles.filedNameText}>Partner {i}</Text>
+            </View>
+            <View key={i + 1} style={styles.fieldValueContainer}>
+                <TextInput key={i} style={styles.filedValueInput} />
+            </View>                        
+        </View>
+        );
+        if(i != 1)
+        {
+            this.setState({partners : this.state.partners});
         }
     }
 
@@ -77,14 +92,11 @@ class NewLineForm extends Component {
                             </Text>
                         </TouchableOpacity>
                     </View>
-                    <View style={styles.row}>
-                        <View style={styles.fieldNameContainer}>
-                            <Text style={styles.filedNameText}>Partners</Text>
-                        </View>
-                        <View style={styles.fieldValueContainer}>
-                            <TextInput style={styles.filedValueInput} />
-                        </View>                        
-                    </View>
+                    {
+                        this.state.partners.map((value) => {
+                            return value
+                        })
+                    }
                     <View style={[styles.row, {
                         alignSelf: 'stretch',
                         alignItems: 'flex-end',
@@ -94,7 +106,7 @@ class NewLineForm extends Component {
                             icon='account-plus'
                             color='red'
                             size={40}
-                            onPress={() => console.log('Pressed')} 
+                            onPress={() => this.addPartner(this.state.partners.length + 1)} 
                         />
                     </View>
                 </View>
