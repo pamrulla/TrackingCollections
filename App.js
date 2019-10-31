@@ -2,14 +2,14 @@ import React, {Component} from 'react';
 import { StyleSheet, Text, View, AppRegistry, Dimensions } from 'react-native';
 import {DefaultTheme, Provider as ParperProvider} from 'react-native-paper';
 import Login from './Components/LoginScreen';
-import MainScreen from './Screens/MainScreen';
+import DurationScreen from './Screens/DurationScreen';
 
 export default class App extends Component {
   render() {
     return (
       <ParperProvider theme={DefaultTheme}>
         <View style={styles.container}>
-          <MainScreen/>
+          <DurationScreen/>
         </View>
       </ParperProvider>
     );

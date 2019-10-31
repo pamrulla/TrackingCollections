@@ -1,40 +1,51 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { withTheme, Surface, Text, List} from 'react-native-paper';
-import Header from './../Components/Util/Header';
+import Header from '../Components/Util/Header';
 
-class MainScreen extends Component {
+class DurationScreen extends Component {
     constructor(props) {
         super(props);
         this.colors = this.props.theme.colors;
         this.state = {  };
     }
 
-    doNewLine()
+    doMonthly()
     {
-        console.log("doNew")
+        console.log("doMonthly")
     }
 
-    doExistingLine()
+    doWeekly()
     {
-        console.log("doExisting")
+        console.log("doWeekly")
+    }
+
+    doDaily()
+    {
+        console.log("doDaily")
     }
 
     render() {
         return (
             <View style={styles.container}>
-                <Header title="Home"/>
+                <Header title="Select Duration" />
                 <View style={styles.content}>
                     <Surface style={styles.surface}>
-                    <TouchableOpacity style={styles.surfaceContents} onPress={this.doNewLine}>
-                            <List.Icon icon="new-box" />
-                            <Text style={styles.surfaceText}>New Line</Text>
+                    <TouchableOpacity style={styles.surfaceContents} onPress={this.doMonthly}>
+                            <List.Icon icon="alpha-m-box" />
+                            <Text style={styles.surfaceText}>Monthly</Text>
                     </TouchableOpacity>
                     </Surface>
                     <Surface style={styles.surface}>
-                        <TouchableOpacity style={styles.surfaceContents} onPress={this.doExistingLine}>
-                            <List.Icon icon="book-open"/>
-                            <Text style={styles.surfaceText}>Existing Line</Text>
+                        <TouchableOpacity style={styles.surfaceContents} onPress={this.doWeekly}>
+                            <List.Icon icon="alpha-w-box"/>
+                            <Text style={styles.surfaceText}>Weekly</Text>
+                        </TouchableOpacity>
+                    </Surface>
+                    <Surface style={styles.surface}>
+                        <TouchableOpacity style={styles.surfaceContents} onPress={this.doDaily}>
+                            <List.Icon icon="alpha-d-box"/>
+                            <Text style={styles.surfaceText}>Daily</Text>
                         </TouchableOpacity>
                     </Surface>
                 </View>
@@ -54,7 +65,7 @@ const styles = StyleSheet.create({
     },
     surface: {
         width: '70%',
-        height: '30%',
+        height: '20%',
         alignItems: 'center',
         justifyContent: 'center',
         elevation: 10,
@@ -72,4 +83,4 @@ const styles = StyleSheet.create({
       }
 })
 
-export default withTheme(MainScreen);
+export default withTheme(DurationScreen);

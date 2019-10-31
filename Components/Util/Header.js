@@ -13,7 +13,7 @@ class Header extends Component {
             <Appbar.Header statusBarHeight={25}>
                 <Appbar.Content
                     title="Tracking Collections"
-                    subtitle="Home"
+                    subtitle={this.props.title}
                 />
             </Appbar.Header>                
         );
