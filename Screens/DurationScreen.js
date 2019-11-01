@@ -12,17 +12,17 @@ class DurationScreen extends Component {
 
     doMonthly()
     {
-        console.log("doMonthly")
+        this.props.navigation.navigate('newline')
     }
 
     doWeekly()
     {
-        console.log("doWeekly")
+        this.props.navigation.navigate('newline')
     }
 
     doDaily()
     {
-        console.log("doDaily")
+        this.props.navigation.navigate('newline')
     }
 
     render() {
@@ -31,19 +31,19 @@ class DurationScreen extends Component {
                 <Header title="Select Duration" />
                 <View style={styles.content}>
                     <Surface style={styles.surface}>
-                    <TouchableOpacity style={styles.surfaceContents} onPress={this.doMonthly}>
+                    <TouchableOpacity style={styles.surfaceContents} onPress={() => this.doMonthly()}>
                             <List.Icon icon="alpha-m-box" />
                             <Text style={styles.surfaceText}>Monthly</Text>
                     </TouchableOpacity>
                     </Surface>
                     <Surface style={styles.surface}>
-                        <TouchableOpacity style={styles.surfaceContents} onPress={this.doWeekly}>
+                        <TouchableOpacity style={styles.surfaceContents} onPress={() => this.doWeekly()}>
                             <List.Icon icon="alpha-w-box"/>
                             <Text style={styles.surfaceText}>Weekly</Text>
                         </TouchableOpacity>
                     </Surface>
                     <Surface style={styles.surface}>
-                        <TouchableOpacity style={styles.surfaceContents} onPress={this.doDaily}>
+                        <TouchableOpacity style={styles.surfaceContents} onPress={() => this.doDaily()}>
                             <List.Icon icon="alpha-d-box"/>
                             <Text style={styles.surfaceText}>Daily</Text>
                         </TouchableOpacity>

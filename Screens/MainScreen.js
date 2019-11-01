@@ -12,7 +12,7 @@ class MainScreen extends Component {
 
     doNewLine()
     {
-        console.log("doNew")
+       this.props.navigation.navigate('duration')
     }
 
     doExistingLine()
@@ -26,13 +26,13 @@ class MainScreen extends Component {
                 <Header title="Home"/>
                 <View style={styles.content}>
                     <Surface style={styles.surface}>
-                    <TouchableOpacity style={styles.surfaceContents} onPress={this.doNewLine}>
+                    <TouchableOpacity style={styles.surfaceContents} onPress={() => this.doNewLine()}>
                             <List.Icon icon="new-box" />
                             <Text style={styles.surfaceText}>New Line</Text>
                     </TouchableOpacity>
                     </Surface>
                     <Surface style={styles.surface}>
-                        <TouchableOpacity style={styles.surfaceContents} onPress={this.doExistingLine}>
+                        <TouchableOpacity style={styles.surfaceContents} onPress={() => this.doExistingLine()}>
                             <List.Icon icon="book-open"/>
                             <Text style={styles.surfaceText}>Existing Line</Text>
                         </TouchableOpacity>

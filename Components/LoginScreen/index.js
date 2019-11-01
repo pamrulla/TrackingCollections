@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Dimensions, KeyboardAvoidingView, Image } from 'react-native';
 import { Title, TextInput, Button, Text, withTheme, ActivityIndicator } from 'react-native-paper';
+import { StackActions, NavigationActions } from 'react-navigation'
 import Overlay from './../Util/Overlay';
 
 class Login extends Component {
@@ -19,17 +20,20 @@ class Login extends Component {
     {
         this.setState({isLoggingIn: true});
         
-        setTimeout(() => {
-            if(this.state.username == 'admin' && this.state.password == 'admin')
-            {
-                this.setState({isLoginError: false});
-            }
-            else
-            {
-                this.setState({isLoginError: true});
-            }
-            this.setState({isLoggingIn: false});
-        }, 3000);
+        if(this.state.username == 'admin' && this.state.password == 'admin')
+        {
+            this.setState({isLoginError: false});
+            const resetAction = StackActions.reset({
+                index: 0,
+                actions: [NavigationActions.navigate({ routeName: 'home' })],
+              });
+            this.props.navigation.dispatch(resetAction);                
+        }
+        else
+        {
+            this.setState({isLoginError: true});
+        }
+        this.setState({isLoggingIn: false});
     }
 
     render() {
