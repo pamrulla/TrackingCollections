@@ -10,25 +10,39 @@ class DurationScreen extends Component {
         this.state = {  };
     }
 
+    goToNewLineForm()
+    {
+        this.props.navigation.navigate('newlineform')
+    }
+
     doMonthly()
     {
-        this.props.navigation.navigate('newline')
+        if(this.props.navigation.getParam('isNewLine'))
+        {
+            this.goToNewLineForm()
+        }
     }
 
     doWeekly()
     {
-        this.props.navigation.navigate('newline')
+        if(this.props.navigation.getParam('isNewLine'))
+        {
+            this.goToNewLineForm()
+        }
     }
 
     doDaily()
     {
-        this.props.navigation.navigate('newline')
+        if(this.props.navigation.getParam('isNewLine'))
+        {
+            this.goToNewLineForm()
+        }
     }
 
     render() {
         return (
             <View style={styles.container}>
-                <Header title="Select Duration" />
+                <Header title="Select Duration" isHome={false} navigation={this.props.navigation}/>
                 <View style={styles.content}>
                     <Surface style={styles.surface}>
                     <TouchableOpacity style={styles.surfaceContents} onPress={() => this.doMonthly()}>

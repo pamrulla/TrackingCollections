@@ -12,18 +12,18 @@ class MainScreen extends Component {
 
     doNewLine()
     {
-       this.props.navigation.navigate('duration')
+       this.props.navigation.navigate('duration', {isNewLine: true})
     }
 
     doExistingLine()
     {
-        console.log("doExisting")
+        this.props.navigation.navigate('duration', {isNewLine: false})
     }
 
     render() {
         return (
             <View style={styles.container}>
-                <Header title="Home"/>
+                <Header title="Home" isHome={true} navigation={this.props.navigation}/>
                 <View style={styles.content}>
                     <Surface style={styles.surface}>
                     <TouchableOpacity style={styles.surfaceContents} onPress={() => this.doNewLine()}>

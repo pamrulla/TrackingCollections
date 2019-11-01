@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Dimensions, KeyboardAvoidingView, Image } from 'react-native';
 import { Title, TextInput, Button, Text, withTheme, ActivityIndicator } from 'react-native-paper';
 import { StackActions, NavigationActions } from 'react-navigation'
-import Overlay from './../Util/Overlay';
+import Overlay from './../Components/Util/Overlay';
 
-class Login extends Component {
+class LoginScreen extends Component {
     constructor(props) {
         super(props);
         this.colors = this.props.theme.colors;
@@ -41,7 +41,7 @@ class Login extends Component {
             <KeyboardAvoidingView behavior='padding' style={styles.container}>
                 
                 <View style={styles.logoContainer}>
-                    <Image source={require('./../../assets/icon.png')} />
+                    <Image source={require('./../assets/icon.png')} />
                     <Title>Login</Title>
                 </View>
                 <View style={styles.formContainer}>
@@ -99,4 +99,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default withTheme(Login);
+export default withTheme(LoginScreen);

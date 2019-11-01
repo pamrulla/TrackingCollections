@@ -43,7 +43,11 @@ class NewLineForm extends Component {
                 <Text key={i} style={styles.filedNameText}>Partner {i}</Text>
             </View>
             <View key={i + 1} style={styles.fieldValueContainer}>
-                <TextInput key={i} style={styles.filedValueInput} />
+                <TextInput 
+                        label='Name'
+                        mode='outlined'
+                        key={i} 
+                        style={styles.filedValueInput} />
             </View>                        
         </View>
         );
@@ -61,7 +65,7 @@ class NewLineForm extends Component {
         }
         return (
             <View style={styles.container}>
-                <Header title="New Line Application"/>
+                <Header title="New Line Application" isHome={false} navigation={this.props.navigation}/>
                 <View style={styles.content}>
                     <View style={styles.row}>
                         <View style={styles.fieldNameContainer}>
