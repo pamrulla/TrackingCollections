@@ -27,7 +27,7 @@ const AppNavigator = createStackNavigator(
   duration: DurationScreen,
   },
   {
-    initialRouteName: 'home',
+    initialRouteName: 'newlineform',
     defaultNavigationOptions: {
       header: null
     }

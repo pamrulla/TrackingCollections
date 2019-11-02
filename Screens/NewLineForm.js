@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, DatePickerAndroid, TouchableOpacity } from 'react-native';
-import { withTheme, Button, Text, Menu, TextInput, IconButton} from 'react-native-paper';
+import { View, StyleSheet, DatePickerAndroid, TouchableOpacity, KeyboardAvoidingView, ScrollView } from 'react-native';
+import { withTheme, Button, Text, Menu, TextInput, IconButton, Snackbar} from 'react-native-paper';
+import { Header as RNHeader } from 'react-navigation-stack';
 import Header from './../Components/Util/Header';
 
 class NewLineForm extends Component {
@@ -11,6 +12,7 @@ class NewLineForm extends Component {
         this.partnersRows = [];
         this.state = { 
             visible: false,
+            submitted: false,
             cityIndex: 0,
             date: new Date(),
             partners: [],
@@ -64,8 +66,9 @@ class NewLineForm extends Component {
             menuItems.push(<Menu.Item key={this.cities[i]} onPress={() => {this.setState({cityIndex: i, visible: false})}} title={this.cities[i]} />);
         }
         return (
-            <View style={styles.container}>
+            <KeyboardAvoidingView keyboardVerticalOffset = {RNHeader.HEIGHT} behavior = "padding" style={styles.container}>
                 <Header title="New Line Application" isHome={false} navigation={this.props.navigation}/>
+                <ScrollView>
                 <View style={styles.content}>
                     <View style={styles.row}>
                         <View style={styles.fieldNameContainer}>
@@ -113,8 +116,19 @@ class NewLineForm extends Component {
                             onPress={() => this.addPartner(this.state.partners.length + 1)} 
                         />
                     </View>
+                    <View style={styles.row}>
+                        <Button mode='outlined' icon='content-save' onPress={() => this.setState(state => ({ submitted: !state.submitted }))}>Save</Button>
+                    </View>
                 </View>
-            </View>
+                </ScrollView>
+                <Snackbar
+                    visible={this.state.submitted}
+                    duration={Snackbar.DURATION_MEDIUM}
+                    onDismiss={() => this.setState({ submitted: false })}
+                >
+                    Successfully submitted data
+                </Snackbar>
+            </KeyboardAvoidingView>
         );
     }
 }
